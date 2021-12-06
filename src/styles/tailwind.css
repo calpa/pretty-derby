@@ -1142,6 +1142,10 @@ video {
   .md\:pb-0{
     padding-bottom: 0px;
   }
+
+  .md\:pl-4{
+    padding-left: 1rem;
+  }
 }
 
 /* purgecss end ignore */
