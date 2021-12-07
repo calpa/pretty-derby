@@ -708,10 +708,6 @@ video {
   display: none !important;
 }
 
-.hidden{
-  display: none;
-}
-
 .h-10{
   height: 2.5rem;
 }
@@ -1145,6 +1141,12 @@ video {
 
   .md\:pl-4{
     padding-left: 1rem;
+  }
+}
+
+@media (min-width: 1024px){
+  .lg\:w-1\/2{
+    width: 50%;
   }
 }
 
