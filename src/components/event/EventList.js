@@ -1,8 +1,8 @@
 import React from "react";
+
 import db from "../../db.js";
 import dbL from "../../dbL.js";
 import t from "../t.js";
-import { Row, Col, Popover, Button, Tabs } from "antd";
 
 import EventCard from "./EventCard";
 import EventDetail from "./EventDetail";
@@ -32,7 +32,7 @@ const EventList = ({ dataList, idList, onClick, sortFlag = false, type = "all" }
       sort={sort}
       filterFunc={filterFunc}
       onClick={onClick}
-      className=''
+      className=""
       itemRender={(item, setCur) => (
         <EventCard
           className="mr-1 mb-1"
@@ -41,7 +41,7 @@ const EventList = ({ dataList, idList, onClick, sortFlag = false, type = "all" }
         />
       )}
       detailRender={(item) => <EventDetail data={item} isNur={false} />}
-    ></List>
+    />
   );
 };
 

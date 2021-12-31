@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import Button from "@material-tailwind/react/Button";
 import {
   Row,
   Alert,
   Image,
-  Button,
   // Divider,
   Table,
   Modal,
@@ -19,9 +19,15 @@ import {
 } from "antd";
 import { message } from "antd";
 //test
-import { PlusOutlined, SmileOutlined, FrownOutlined, CopyOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  PlusOutlined,
+  SmileOutlined,
+  FrownOutlined,
+  CopyOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useDidRecover } from 'react-router-cache-route'
+import { useDidRecover } from "react-router-cache-route";
 import axios from "axios";
 import db from "@/db.js";
 import dbL from "@/dbL.js";
@@ -33,8 +39,7 @@ import SupportListWithFilter from "@/components/support/SupportListWithFilter";
 const cdnServer = "https://cdn.jsdelivr.net/gh/wrrwrr111/pretty-derby/public/";
 // db.set('userId',null).write()
 let userId = dbL.get("userId").value();
-const TITLE = '分享 - 乌拉拉大胜利 - 赛马娘资料站'
-// console.log(userId)
+const TITLE = "分享 - 乌拉拉大胜利 - 赛马娘资料站";
 
 /*
 userId 随机生成
@@ -102,9 +107,15 @@ const PlayerInput = ({ value = {}, onChange }) => {
         fallback="data:image/png;base64,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"
         width={80}
         onClick={showPlayer}
-      ></Image>
-      <Modal visible={isPlayerVisible} onOk={closePlayer} onCancel={closePlayer} width={"80%"} bodyStyle={{ maxHeight: "80vh", overflow: 'auto' }}>
-        <PlayerList sortFlag={true} onClick={handleSelectPlayer}></PlayerList>
+      />
+      <Modal
+        visible={isPlayerVisible}
+        onOk={closePlayer}
+        onCancel={closePlayer}
+        width={"80%"}
+        bodyStyle={{ maxHeight: "80vh", overflow: "auto" }}
+      >
+        <PlayerList sortFlag={true} onClick={handleSelectPlayer} />
       </Modal>
     </>
   );
@@ -138,12 +149,16 @@ const SupportInput = ({ value = {}, onChange }) => {
         fallback="data:image/png;base64,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"
         width={80}
         onClick={showSupport}
-      ></Image>
-      <Modal visible={isSupportVisible} onOk={closeSupport} onCancel={closeSupport} width={"80%"}
-        bodyStyle={{ height: "90vh" }}>
-        <div className='w-full h-full overflow-hidden flex relative'>
-          <SupportListWithFilter onClick={handleSelectSupport}
-            sortFlag={true}></SupportListWithFilter>
+      />
+      <Modal
+        visible={isSupportVisible}
+        onOk={closeSupport}
+        onCancel={closeSupport}
+        width={"80%"}
+        bodyStyle={{ height: "90vh" }}
+      >
+        <div className="w-full h-full overflow-hidden flex relative">
+          <SupportListWithFilter onClick={handleSelectSupport} sortFlag={true} />
         </div>
       </Modal>
     </>
@@ -195,11 +210,10 @@ const SeedInput = (props) => {
       }
       //统计ura
       if (formData["uraLevel"] !== undefined) {
-        formData['uraLevel'] += formData[`uraLevel${i}`]
+        formData["uraLevel"] += formData[`uraLevel${i}`];
       } else {
-        formData['uraLevel'] = formData[`uraLevel${i}`]
+        formData["uraLevel"] = formData[`uraLevel${i}`];
       }
-
     });
     const res = await axios.post("https://urarawin.com/api/sqlite/add", formData);
     if (res.data && res.data.success) {
@@ -216,11 +230,11 @@ const SeedInput = (props) => {
     for (let i = 0; i < 3; i++) {
       children.push(
         <Col span={8} key={i}>
-          <PageHeader title={`${list[i]}`}></PageHeader>
+          <PageHeader title={`${list[i]}`} />
           <Row>
             <Col span={6} offset={4}>
               <Form.Item label="角色" name={`player${i}`} rules={[{ required: true }]}>
-                <PlayerInput></PlayerInput>
+                <PlayerInput />
               </Form.Item>
             </Col>
           </Row>
@@ -262,7 +276,7 @@ const SeedInput = (props) => {
             <Rate count={3} />
           </Form.Item>
           <Form.Item label="白色因子个数" name={`whiteNum${i}`} initialValue={0}>
-            <Slider min={0} max={10} dots={true} tooltipPlacement={"left"}></Slider>
+            <Slider min={0} max={10} dots={true} tooltipPlacement={"left"} />
           </Form.Item>
         </Col>
       );
@@ -274,12 +288,12 @@ const SeedInput = (props) => {
       <Alert
         message="目前每人只能配置一个种子 自觉维护自己的信息；第一次添加前先刷新 否则可能失败"
         type="info"
-      ></Alert>
+      />
       <Row gutter={24}>{getFields()}</Row>
       <Row justify="end">
         <Col span={3}>
           <Form.Item label="辅助卡" name={"support"} rules={[{ required: true }]}>
-            <SupportInput></SupportInput>
+            <SupportInput />
           </Form.Item>
         </Col>
         <Col span={4} offset={1}>
@@ -303,7 +317,7 @@ const SeedInput = (props) => {
               }),
             ]}
           >
-            <Input placeholder="id" style={{ width: "100%" }}></Input>
+            <Input placeholder="id" style={{ width: "100%" }} />
           </Form.Item>
         </Col>
         <Col span={2} offset={2}>
@@ -422,7 +436,7 @@ const SearchForm = (props) => {
         formData["red0"] = item.attr;
         formData.attrs.push("redLevel0");
         formData.levels.push(item.level);
-      } else if (item.attr === 'uraLevel') {
+      } else if (item.attr === "uraLevel") {
         formData.attrs.push("uraLevel0");
         formData.levels.push(item.level);
       }
@@ -441,15 +455,15 @@ const SearchForm = (props) => {
     <Form name="搜索" form={form} onFinish={onFinish} className="seed-form">
       <Row>
         <Form.Item label="角色" name={`player0`}>
-          <PlayerInput></PlayerInput>
+          <PlayerInput />
         </Form.Item>
       </Row>
-      <SearchOne name="p0" max="3"></SearchOne>
+      <SearchOne name="p0" max="3" />
       <div>总计:</div>
-      <SearchOne name="p1" max="9"></SearchOne>
+      <SearchOne name="p1" max="9" />
       <Row>
         <Form.Item label="支援卡" name={"support"}>
-          <SupportInput></SupportInput>
+          <SupportInput />
         </Form.Item>
         <Form.Item label="突破等级" name={"supportLevel"} initialValue={0}>
           <Rate count={4} />
@@ -479,7 +493,7 @@ const PlayerImage = (props) => {
       fallback="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMIAAADDCAYAAADQvc6UAAABRWlDQ1BJQ0MgUHJvZmlsZQAAKJFjYGASSSwoyGFhYGDIzSspCnJ3UoiIjFJgf8LAwSDCIMogwMCcmFxc4BgQ4ANUwgCjUcG3awyMIPqyLsis7PPOq3QdDFcvjV3jOD1boQVTPQrgSkktTgbSf4A4LbmgqISBgTEFyFYuLykAsTuAbJEioKOA7DkgdjqEvQHEToKwj4DVhAQ5A9k3gGyB5IxEoBmML4BsnSQk8XQkNtReEOBxcfXxUQg1Mjc0dyHgXNJBSWpFCYh2zi+oLMpMzyhRcASGUqqCZ16yno6CkYGRAQMDKMwhqj/fAIcloxgHQqxAjIHBEugw5sUIsSQpBobtQPdLciLEVJYzMPBHMDBsayhILEqEO4DxG0txmrERhM29nYGBddr//5/DGRjYNRkY/l7////39v///y4Dmn+LgeHANwDrkl1AuO+pmgAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAwqADAAQAAAABAAAAwwAAAAD9b/HnAAAHlklEQVR4Ae3dP3PTWBSGcbGzM6GCKqlIBRV0dHRJFarQ0eUT8LH4BnRU0NHR0UEFVdIlFRV7TzRksomPY8uykTk/zewQfKw/9znv4yvJynLv4uLiV2dBoDiBf4qP3/ARuCRABEFAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghgg0Aj8i0JO4OzsrPv69Wv+hi2qPHr0qNvf39+iI97soRIh4f3z58/u7du3SXX7Xt7Z2enevHmzfQe+oSN2apSAPj09TSrb+XKI/f379+08+A0cNRE2ANkupk+ACNPvkSPcAAEibACyXUyfABGm3yNHuAECRNgAZLuYPgEirKlHu7u7XdyytGwHAd8jjNyng4OD7vnz51dbPT8/7z58+NB9+/bt6jU/TI+AGWHEnrx48eJ/EsSmHzx40L18+fLyzxF3ZVMjEyDCiEDjMYZZS5wiPXnyZFbJaxMhQIQRGzHvWR7XCyOCXsOmiDAi1HmPMMQjDpbpEiDCiL358eNHurW/5SnWdIBbXiDCiA38/Pnzrce2YyZ4//59F3ePLNMl4PbpiL2J0L979+7yDtHDhw8vtzzvdGnEXdvUigSIsCLAWavHp/+qM0BcXMd/q25n1vF57TYBp0a3mUzilePj4+7k5KSLb6gt6ydAhPUzXnoPR0dHl79WGTNCfBnn1uvSCJdegQhLI1vvCk+fPu2ePXt2tZOYEV6/fn31dz+shwAR1sP1cqvLntbEN9MxA9xcYjsxS1jWR4AIa2Ibzx0tc44fYX/16lV6NDFLXH+YL32jwiACRBiEbf5KcXoTIsQSpzXx4N28Ja4BQoK7rgXiydbHjx/P25TaQAJEGAguWy0+2Q8PD6/Ki4R8EVl+bzBOnZY95fq9rj9zAkTI2SxdidBHqG9+skdw43borCXO/ZcJdraPWdv22uIEiLA4q7nvvCug8WTqzQveOH26fodo7g6uFe/a17W3+nFBAkRYENRdb1vkkz1CH9cPsVy/jrhr27PqMYvENYNlHAIesRiBYwRy0V+8iXP8+/fvX11Mr7L7ECueb/r48eMqm7FuI2BGWDEG8cm+7G3NEOfmdcTQw4h9/55lhm7DekRYKQPZF2ArbXTAyu4kDYB2YxUzwg0gi/41ztHnfQG26HbGel/crVrm7tNY+/1btkOEAZ2M05r4FB7r9GbAIdxaZYrHdOsgJ/wCEQY0J74TmOKnbxxT9n3FgGGWWsVdowHtjt9Nnvf7yQM2aZU/TIAIAxrw6dOnAWtZZcoEnBpNuTuObWMEiLAx1HY0ZQJEmHJ3HNvGCBBhY6jtaMoEiJB0Z29vL6ls58vxPcO8/zfrdo5qvKO+d3Fx8Wu8zf1dW4p/cPzLly/dtv9Ts/EbcvGAHhHyfBIhZ6NSiIBTo0LNNtScABFyNiqFCBChULMNNSdAhJyNSiECRCjUbEPNCRAhZ6NSiAARCjXbUHMCRMjZqBQiQIRCzTbUnAARcjYqhQgQoVCzDTUnQIScjUohAkQo1GxDzQkQIWejUogAEQo121BzAkTI2agUIkCEQs021JwAEXI2KoUIEKFQsw01J0CEnI1KIQJEKNRsQ80JECFno1KIABEKNdtQcwJEyNmoFCJAhELNNtScABFyNiqFCBChULMNNSdAhJyNSiECRCjUbEPNCRAhZ6NSiAARCjXbUHMCRMjZqBQiQIRCzTbUnAARcjYqhQgQoVCzDTUnQIScjUohAkQo1GxDzQkQIWejUogAEQo121BzAkTI2agUIkCEQs021JwAEXI2KoUIEKFQsw01J0CEnI1KIQJEKNRsQ80JECFno1KIABEKNdtQcwJEyNmoFCJAhELNNtScABFyNiqFCBChULMNNSdAhJyNSiECRCjUbEPNCRAhZ6NSiAARCjXbUHMCRMjZqBQiQIRCzTbUnAARcjYqhQgQoVCzDTUnQIScjUohAkQo1GxDzQkQIWejUogAEQo121BzAkTI2agUIkCEQs021JwAEXI2KoUIEKFQsw01J0CEnI1KIQJEKNRsQ80JECFno1KIABEKNdtQcwJEyNmoFCJAhELNNtScABFyNiqFCBChULMNNSdAhJyNSiEC/wGgKKC4YMA4TAAAAABJRU5ErkJggg=="
       width={80}
       preview={false}
-    ></Image>
+    />
   );
 };
 
@@ -495,20 +509,20 @@ const SupportImage = (props) => {
       fallback="data:image/png;base64,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"
       width={80}
       preview={false}
-    ></Image>
+    />
   );
 };
 
 const Seed = () => {
-  document.title = TITLE
+  document.title = TITLE;
   useDidRecover(() => {
-    document.title = TITLE
-  })
+    document.title = TITLE;
+  });
   const [isSeedInputVisible, setIsSeedInputVisible] = useState(false);
   const [seedList, setSeedList] = useState([]);
-  const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState(0);
   // const [current, setCurrent] = useState(0)
-  const [value, setValue] = useState()
+  const [value, setValue] = useState();
 
   const columns = [
     {
@@ -520,21 +534,22 @@ const Seed = () => {
           <Row>
             <p>{text}</p>
             <CopyToClipboard text={text} onCopy={() => message.info("成功")}>
-              <Button shape="circle" icon={<CopyOutlined />} />
+              <CopyOutlined />
             </CopyToClipboard>
           </Row>
           <Row align="middle">
-            <Button shape="circle" icon={<SmileOutlined />} onClick={() => like(seed)} />
+            <SmileOutlined onClick={() => like(seed)} />
             <p>{seed.likes}</p>
           </Row>
           <Row align="middle">
-            <Button shape="circle" icon={<FrownOutlined />} onClick={() => dislike(seed)} />
+            <FrownOutlined onClick={() => dislike(seed)} />
             <p>{seed.dislikes}</p>
           </Row>
-          {seed.userId === userId && <Row align="middle">
-            <Button shape="circle" icon={<DeleteOutlined />}
-              style={{ color: 'red' }} onClick={() => deleteSeed(seed)} />
-          </Row>}
+          {seed.userId === userId && (
+            <Row align="middle">
+              <DeleteOutlined onClick={() => deleteSeed(seed)} />
+            </Row>
+          )}
         </>
       ),
     },
@@ -542,58 +557,53 @@ const Seed = () => {
       title: "主要",
       dataIndex: "playerId0",
       key: "playerId0",
-      render: (text) => <PlayerImage id={text}></PlayerImage>,
+      render: (text) => <PlayerImage id={text} />,
     },
     {
       title: "蓝色因子",
       dataIndex: "blue0",
       key: "blue0",
-      render: (text, record) =>
-        <span className="rate-label">
-          {`${blueLabels[text]}\xa0\xa0${record["blueLevel0"]}`}
-        </span>
-      ,
+      render: (text, record) => (
+        <span className="rate-label">{`${blueLabels[text]}\xa0\xa0${record["blueLevel0"]}`}</span>
+      ),
     },
     {
       title: "红色因子",
       dataIndex: "red0",
       key: "red0",
-      render: (text, record) =>
-        <span className="rate-label">
-          {`${redLabels[text]}\xa0\xa0${record["redLevel0"]}`}
-        </span>
-      ,
+      render: (text, record) => (
+        <span className="rate-label">{`${redLabels[text]}\xa0\xa0${record["redLevel0"]}`}</span>
+      ),
     },
     {
       title: "绿色因子",
       dataIndex: "greenLevel0",
       key: "greenLevel0",
-      render: (text, record) =>
-        <span className="rate-label">
-          {`固有\xa0\xa0${record["greenLevel0"]}`}
-        </span>
-      ,
-    }, {
+      render: (text, record) => (
+        <span className="rate-label">{`固有\xa0\xa0${record["greenLevel0"]}`}</span>
+      ),
+    },
+    {
       title: "URA",
       dataIndex: "uraLevel0",
       key: "uraLevel0",
-      render: (text, record) =>
+      render: (text, record) => (
         <span className="rate-label">
-          {`${record["uraLevel0"] ? `URA  ${record["uraLevel0"]}` : ''}`}
+          {`${record["uraLevel0"] ? `URA  ${record["uraLevel0"]}` : ""}`}
         </span>
-      ,
+      ),
     },
     {
       title: "父辈1",
       dataIndex: "playerId1",
       key: "playerId1",
-      render: (text) => <PlayerImage id={text}></PlayerImage>,
+      render: (text) => <PlayerImage id={text} />,
     },
     {
       title: "父辈2",
       dataIndex: "playerId2",
       key: "playerId2",
-      render: (text) => <PlayerImage id={text}></PlayerImage>,
+      render: (text) => <PlayerImage id={text} />,
     },
     {
       title: "总计蓝色",
@@ -601,12 +611,7 @@ const Seed = () => {
       render: (text, record) =>
         Object.keys(blueLabels).map((key) => {
           if (record[key]) {
-            // console.log(key,record[key])
-            return (
-              <span className="rate-label">
-                {`${blueLabels[key]}\xa0\xa0${record[key]}`}
-              </span>
-            );
+            return <span className="rate-label">{`${blueLabels[key]}\xa0\xa0${record[key]}`}</span>;
           } else {
             return null;
           }
@@ -618,11 +623,7 @@ const Seed = () => {
       render: (text, record) =>
         Object.keys(redLabels).map((key) => {
           if (record[key]) {
-            return (
-              <span className="rate-label">
-                {`${redLabels[key]}\xa0\xa0${record[key]}`}
-              </span>
-            );
+            return <span className="rate-label">{`${redLabels[key]}\xa0\xa0${record[key]}`}</span>;
           } else {
             return null;
           }
@@ -634,7 +635,7 @@ const Seed = () => {
       title: "支援卡",
       dataIndex: "supportId",
       key: "supportId",
-      render: (text) => <SupportImage id={text}></SupportImage>,
+      render: (text) => <SupportImage id={text} />,
     },
     {
       title: "突破等级",
@@ -642,7 +643,7 @@ const Seed = () => {
       key: "supportLevel",
       render: (text, record) => (
         <Row>
-          <Rate count={4} value={record["supportLevel"]} disabled></Rate>
+          <Rate count={4} value={record["supportLevel"]} disabled />
         </Row>
       ),
     },
@@ -655,8 +656,8 @@ const Seed = () => {
     setIsSeedInputVisible(false);
   };
   const showMySeed = () => {
-    search({ attrs: ['userId'], levels: [userId] })
-  }
+    search({ attrs: ["userId"], levels: [userId] });
+  };
   const deleteSeed = async (value) => {
     const res = await axios.post("https://urarawin.com/api/sqlite/delete", value);
     if (res.data) {
@@ -664,18 +665,18 @@ const Seed = () => {
     } else {
       message.info("出错了");
     }
-  }
+  };
   const search = async (value) => {
-    setValue(value)
+    setValue(value);
     const res = await axios.post("https://urarawin.com/api/sqlite/search", value);
     // setCurrent(0)
     if (res.data) {
       if (res.data.count) {
         setSeedList([...res.data.list]);
-        setTotal(res.data.count)
+        setTotal(res.data.count);
       } else {
         setSeedList([]);
-        setTotal(0)
+        setTotal(0);
         message.info("暂无数据");
       }
     } else {
@@ -691,7 +692,7 @@ const Seed = () => {
     const res = await axios.post("https://urarawin.com/api/sqlite/like", { id, userId });
     if (res.data) {
       message.info("成功");
-      seed.likes += 1
+      seed.likes += 1;
     }
     setSeedList([...seedList]);
   };
@@ -704,7 +705,7 @@ const Seed = () => {
     const res = await axios.post("https://urarawin.com/api/sqlite/dislike", { id, userId });
     if (res.data) {
       message.info("成功");
-      seed.dislikes += 1
+      seed.dislikes += 1;
     }
     setSeedList([...seedList]);
   };
@@ -712,23 +713,31 @@ const Seed = () => {
     search({
       ...value,
       count: e.total,
-      offset: e.current * 10 - 10
-    })
-  }
+      offset: e.current * 10 - 10,
+    });
+  };
   return (
-    <Layout>
+    <>
       <div className="seed-container">
         <Card className="card" title="过滤条件">
-          <SearchForm search={search}></SearchForm>
+          <SearchForm search={search} />
           <Button onClick={() => showSeedInput()}>配置我的种子</Button>
           <Button onClick={() => showMySeed()}>查看我的种子</Button>
         </Card>
         <Card className="card" title="结果">
-          <Table columns={columns} dataSource={seedList} onChange={onChange}
+          <Table
+            columns={columns}
+            dataSource={seedList}
+            onChange={onChange}
             pagination={{
-              pageSize: 10, total: total, simple: true, showQuickJumper: false,
-              position: ['topRight', 'bottomRight']
-            }} rowKey={"id"} />
+              pageSize: 10,
+              total: total,
+              simple: true,
+              showQuickJumper: false,
+              position: ["topRight", "bottomRight"],
+            }}
+            rowKey={"id"}
+          />
         </Card>
       </div>
       <Modal
@@ -738,9 +747,9 @@ const Seed = () => {
         footer={null}
         width={"80%"}
       >
-        <SeedInput onFinish={closeSeedInput}></SeedInput>
+        <SeedInput onFinish={closeSeedInput} />
       </Modal>
-    </Layout>
+    </>
   );
 };
 export default Seed;

@@ -1,10 +1,22 @@
-import { Link, useLocation } from "react-router-dom";
-import useUa from "../../utils/ua.js";
-import LanButton from "../lan-button";
-import { cdnServer } from "../../config";
-import dbL from "../../dbL.js";
-import t from "../t.js";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import Navbar from "@material-tailwind/react/Navbar";
+import NavbarContainer from "@material-tailwind/react/NavbarContainer";
+import NavbarWrapper from "@material-tailwind/react/NavbarWrapper";
+import NavbarBrand from "@material-tailwind/react/NavbarBrand";
+import NavbarToggler from "@material-tailwind/react/NavbarToggler";
+import NavbarCollapse from "@material-tailwind/react/NavbarCollapse";
+import Nav from "@material-tailwind/react/Nav";
+import NavLink from "@material-tailwind/react/NavLink";
+
+import useUa from "@/utils/ua.js";
+import LanButton from "@/components/lan-button.js";
+import { cdnServer } from "@/config";
+import dbL from "@/dbL.js";
+import t from "@/components/t.js";
+
 const Layout = ({ children, contentClass, rootClass }) => {
+  const [openNavbar, setOpenNavbar] = useState(false);
   const ua = useUa();
   const location = useLocation();
   const resetNur = () => {
@@ -34,21 +46,34 @@ const Layout = ({ children, contentClass, rootClass }) => {
   ];
   const list = ua.isPhone ? phoneList : pcList;
   return (
-    <div className={rootClass || "w-screen min-h-screen md:h-screen flex flex-col relative"}>
-      <div className="h-10 md:h-16 w-full  bg-gray-900 flex items-center fixed bottom-0 left-0 right-0 md:flex-shrink-0 md:sticky md:top-0 z-10">
-        <div className="w-full md:max-w-sm flex justify-around">
-          {list.map((item) => (
-            <Link
-              to={item.path}
-              className={`text-gray-300 ${location.pathname === item.path ? "text-blue-500" : "text-gray-300"
-                }`}
-            >
-              {t(item.title)}
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className={`${contentClass}`}>{children}</div>
+    <div className={"flex flex-col w-screen min-h-screen relative"}>
+      <Navbar className="sticky top-0 z-50" color="lightBlue" navbar>
+        <NavbarContainer>
+          <NavbarWrapper>
+            <NavbarBrand>赛马娘</NavbarBrand>
+            <NavbarToggler
+              color="white"
+              onClick={() => setOpenNavbar(!openNavbar)}
+              ripple="light"
+            />
+          </NavbarWrapper>
+
+          <NavbarCollapse open={openNavbar}>
+            <Nav leftSide>
+              {list.map((item) => (
+                <NavLink
+                  active={location.pathname === item.path && "light"}
+                  href={item.path}
+                  ripple="light"
+                >
+                  {t(item.title)}
+                </NavLink>
+              ))}
+            </Nav>
+          </NavbarCollapse>
+        </NavbarContainer>
+      </Navbar>
+      {children}
       <div className="w-full flex items-center flex-wrap pb-10 md:pb-0">
         <div className="cursor-pointer" data-tip="无法打开育成页面时点一哈" onClick={resetNur}>
           {t("初始化育成")}
@@ -68,7 +93,7 @@ const Layout = ({ children, contentClass, rootClass }) => {
           rel="noreferrer"
           href="https://qm.qq.com/cgi-bin/qm/qr?k=f2Q2MIqkkxiiYq-sfRYmI7E4v17-r3V2&jump_from=webapi"
           data-tip={`
-          <img src=${cdnServer + "img/q.jpg"} width={300}></img>
+          <img src=${cdnServer + "img/q.jpg"} width={300} />
           <p>${t("闲聊为主")}</p>
           `}
         >
@@ -81,9 +106,9 @@ const Layout = ({ children, contentClass, rootClass }) => {
         </a>
         <div
           className="flex mx-2 items-center"
-          data-tip={`<img src=${cdnServer + "img/weapp.jpg"} width={200}></img>`}
+          data-tip={`<img src=${cdnServer + "img/weapp.jpg"} width={200} />`}
         >
-          <img src={cdnServer + "reimu.gif"} preview={false} width={24}></img>
+          <img alt="reimu" src={cdnServer + "reimu.gif"} preview={false} width={24} />
           <div>{t("微信小程序")}</div>
         </div>
       </div>
