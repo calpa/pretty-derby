@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/pretty-derby/static/css/main.68491f05.chunk.css",
-    "main.js": "/pretty-derby/static/js/main.6acabf45.chunk.js",
-    "main.js.map": "/pretty-derby/static/js/main.6acabf45.chunk.js.map",
+    "main.js": "/pretty-derby/static/js/main.7f7df6cc.chunk.js",
+    "main.js.map": "/pretty-derby/static/js/main.7f7df6cc.chunk.js.map",
     "runtime-main.js": "/pretty-derby/static/js/runtime-main.7d7c2ce2.js",
     "runtime-main.js.map": "/pretty-derby/static/js/runtime-main.7d7c2ce2.js.map",
     "static/css/2.23b8bdbe.chunk.css": "/pretty-derby/static/css/2.23b8bdbe.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.23b8bdbe.chunk.css",
     "static/js/2.fb4d2880.chunk.js",
     "static/css/main.68491f05.chunk.css",
-    "static/js/main.6acabf45.chunk.js"
+    "static/js/main.7f7df6cc.chunk.js"
   ]
 }
