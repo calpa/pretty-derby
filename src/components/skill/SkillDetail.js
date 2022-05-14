@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Typography } from '@material-ui/core'
+
 import db from "../../db.js";
 import t from "../t.js";
 import SupportList from "../support/SupportList";
@@ -66,49 +68,49 @@ const SkillDetail = (props) => {
           <img alt={data.name} src={cdnServer + data.imgUrl} className="w-14" />
         </div>
         <div className="flex-auto">
-          <p>{t(data.name)}</p>
-          <p className="text-gray-500">{data.name}</p>
+          <Typography>{t(data.name)}</Typography>
+          <Typography className="text-gray-500">{data.name}</Typography>
         </div>
       </div>
       <div className="w-full flex mb-1">
         <div className="w-20 text-center flex-shrink-0">{t("技能描述")}</div>
         <div className="flex-auto">
-          <p>{t(data.describe)}</p>
-          <p className="text-gray-500">{data.describe}</p>
+          <Typography>{t(data.describe)}</Typography>
+          <Typography className="text-gray-500">{data.describe}</Typography>
         </div>
       </div>
       <div className="w-full flex mb-1 bg-gray-100">
         <div className="w-20 text-center flex-shrink-0">{t("触发条件")}</div>
         <div className="flex-auto">
-          <p>{t(data.condition)}</p>
-          <p className="text-gray-500">{data.condition}</p>
+          <Typography>{t(data.condition)}</Typography>
+          <Typography className="text-gray-500">{data.condition}</Typography>
         </div>
       </div>
       <div className="w-full flex mb-1">
         <div className="w-20 text-center flex-shrink-0">{t("技能效果")}</div>
         <div className="flex-auto">
           {data.ability?.map((ability) => {
-            return <span>{`${skillType[ability.type]} ${ability.value / 10000}`}</span>;
+            return <Typography>{`${skillType[ability.type]} ${ability.value / 10000}`}</Typography>;
           })}
         </div>
       </div>
       <div className="w-full flex mb-1 bg-gray-100">
-        <div className="w-20 text-center flex-shrink-0">{t("持续时间")}</div>
-        <div className="flex-auto">
+        <Typography className="w-20 text-center flex-shrink-0">{t("持续时间")}</Typography>
+        <Typography className="flex-auto">
           {`${data.ability_time / 10000}s * ${t("赛道长度")} / 1000}`}
-        </div>
+        </Typography>
       </div>
       <div className="w-full flex mb-1">
-        <div className="w-20 text-center flex-shrink-0">{t("冷却时间")}</div>
-        <div className="flex-auto">{`${data.cooldown / 10000}s * ${t("赛道长度")} / 1000`}</div>
+        <Typography className="w-20 text-center flex-shrink-0">{t("冷却时间")}</Typography>
+        <Typography className="flex-auto">{`${data.cooldown / 10000}s * ${t("赛道长度")} / 1000`}</Typography>
       </div>
       <div className="w-full flex mb-1 bg-gray-100">
-        <div className="w-20 text-center flex-shrink-0">{t("技能价格")}</div>
-        <div className="flex-auto">{data.need_skill_point}</div>
+        <Typography className="w-20 text-center flex-shrink-0">{t("技能价格")}</Typography>
+        <Typography className="flex-auto">{data.need_skill_point}</Typography>
       </div>
       <div className="w-full flex mb-1">
-        <div className="w-20 text-center flex-shrink-0">{t("技能评分")}</div>
-        <div className="flex-auto">{data.grade_value}</div>
+        <Typography className="w-20 text-center flex-shrink-0">{t("技能评分")}</Typography>
+        <Typography className="flex-auto">{data.grade_value}</Typography>
       </div>
       {!isNur && (
         <>

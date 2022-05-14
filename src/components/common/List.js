@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ReactTooltip from "react-tooltip";
 
+import { Grid } from '@material-ui/core'
+
 import Modal from "@material-tailwind/react/Modal";
 import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalHeader from "@material-tailwind/react/ModalHeader";
@@ -23,10 +25,10 @@ const List = ({
   const list = dataList
     ? dataList
     : idList
-    ? idList.reduce((list, cur) => {
+      ? idList.reduce((list, cur) => {
         return [...list, db.get(listKey).find({ id: cur }).value()];
       }, [])
-    : db.get(listKey).value();
+      : db.get(listKey).value();
   const [cur, setCur] = useState(null);
 
   const showModal = (cur) => {
@@ -65,7 +67,7 @@ const List = ({
             return <></>;
           }
           return (
-            <>
+            <Grid>
               <div className="w-full text-lg font-semibold text-center">{t(sortItem.title)}</div>
               {sortList.map((data) => itemRender(data, showModal))}
               {itemClass && (
@@ -75,7 +77,7 @@ const List = ({
                   ))}
                 </>
               )}
-            </>
+            </Grid>
           );
         })}
         {modal}
