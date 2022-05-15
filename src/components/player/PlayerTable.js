@@ -68,9 +68,7 @@ const PlayerTable = (props) => {
       dataIndex: "imgUrl",
       key: "imgUrl",
       width: 100,
-      render: (text, record) => (
-        <Card data={record} onSelect={props.onSelect} name={false} />
-      ),
+      render: (text, record) => <Card data={record} onSelect={props.onSelect} name={false} />,
     },
     { title: "称号", dataIndex: "name", key: "name", render: (value) => t(value) },
     { title: "角色名", dataIndex: "charaName", key: "charaName", render: (value) => t(value) },

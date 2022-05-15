@@ -10,7 +10,7 @@ import {
   // RaceSchedule,
   RaceTimeline,
 } from "../race";
-import { Typography } from '@material-ui/core';
+import { Typography } from "@material-ui/core";
 // import {EffectTable} from './effect.js'
 
 const PlayerItem = ({ data }) => {

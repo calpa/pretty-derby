@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 
-import { Typography } from '@material-ui/core';
+import { Typography } from "@material-ui/core";
 
 import Navbar from "@material-tailwind/react/Navbar";
 import NavbarContainer from "@material-tailwind/react/NavbarContainer";
@@ -70,9 +70,7 @@ const Layout = ({ children, contentClass, rootClass }) => {
                     active={location.pathname === item.path && "light"}
                     ripple="light"
                   >
-                    <Typography>
-                      {t(item.title)}
-                    </Typography>
+                    <Typography>{t(item.title)}</Typography>
                   </NavLink>
                 </Link>
               ))}

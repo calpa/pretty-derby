@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Typography } from "@material-ui/core";
 
 const CheckBox = ({ register, name, value, label, icon }) => {
   return (
