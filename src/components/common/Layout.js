@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 
-import { Typography } from '@material-ui/core';
+import { Typography } from "@material-ui/core";
 
 import Navbar from "@material-tailwind/react/Navbar";
 import NavbarContainer from "@material-tailwind/react/NavbarContainer";
@@ -70,9 +70,7 @@ const Layout = ({ children, contentClass, rootClass }) => {
                     active={location.pathname === item.path && "light"}
                     ripple="light"
                   >
-                    <Typography>
-                      {t(item.title)}
-                    </Typography>
+                    <Typography>{t(item.title)}</Typography>
                   </NavLink>
                 </Link>
               ))}
@@ -85,8 +83,8 @@ const Layout = ({ children, contentClass, rootClass }) => {
         <div className="cursor-pointer" data-tip="无法打开育成页面时点一哈" onClick={resetNur}>
           {t("初始化育成")}
         </div>
-        <LanButton></LanButton>
-        <div className="flex-auto"></div>
+        <LanButton />
+        <div className="flex-auto" />
         <a
           target="_blank"
           rel="noreferrer"

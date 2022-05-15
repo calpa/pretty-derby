@@ -10,7 +10,7 @@ import {
   // RaceSchedule,
   RaceTimeline,
 } from "../race";
-import { Typography } from '@material-ui/core';
+import { Typography } from "@material-ui/core";
 // import {EffectTable} from './effect.js'
 
 const PlayerItem = ({ data }) => {
@@ -64,9 +64,9 @@ const PlayerDetail = (props) => {
       <div className="w-full flex flex-col  p-3">
         <PlayerItem data={data} />
         <AdaptBox player={data} />
-        <div className="h-2"></div>
+        <div className="h-2" />
         <GrowBox player={data} />
-        <div className="h-2"></div>
+        <div className="h-2" />
         <SkillList idList={data.skillList} />
         <div>{t("多选项事件")}</div>
         <EventList idList={data.eventList0} />
@@ -125,7 +125,7 @@ const AdaptBox = (props) => {
       <div className="col-span-1 flex items-center justify-around">
         {[`${t("ダート")}`, coloredGradeText(props.player.dirt)]}
       </div>
-      <div className="col-span-2"></div>
+      <div className="col-span-2" />
       <div className="col-span-1 md_text-xl bg-green-400 text-gray-700 flex justify-center items-center">
         {t("赛程适应")}
       </div>
