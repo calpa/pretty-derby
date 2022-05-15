@@ -55,7 +55,7 @@
   "scripts": {
     "build:css-dev": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
     "start:js": "react-app-rewired  start",
-    "start": "npm-run-all build:css-dev start:js",
+    "start": "NODE_ENV=development npm-run-all build:css-dev start:js",
     "build": "CI=false react-app-rewired --max_old_space_size=5048 build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",

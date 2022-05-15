@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { Grid } from '@material-ui/core'
+
 import SupportCard from "./SupportCard";
 import SupportDetail from "./SupportDetail";
 import List from "../common/List";
@@ -9,13 +11,13 @@ const SupportList = ({ className, dataList, onClick, sortFlag = false, ownList }
   const history = useHistory();
   const sort = sortFlag
     ? {
-        key: "rare",
-        data: [
-          { value: "SSR", title: "SSR" },
-          { value: "SR", title: "SR" },
-          { value: "R", title: "R" },
-        ],
-      }
+      key: "rare",
+      data: [
+        { value: "SSR", title: "SSR" },
+        { value: "SR", title: "SR" },
+        { value: "R", title: "R" },
+      ],
+    }
     : null;
   return (
     <List
@@ -25,7 +27,7 @@ const SupportList = ({ className, dataList, onClick, sortFlag = false, ownList }
       sort={sort}
       onClick={onClick}
       itemRender={(data, setCur) => (
-        <div className="w-24 max-w-1/4 p-1">
+        <Grid className="p-1" item xs={6}>
           <SupportCard
             className={`${ownList?.length && !ownList?.includes(data.id) && "un-chosen-card"}`}
             data={data}
@@ -33,15 +35,15 @@ const SupportList = ({ className, dataList, onClick, sortFlag = false, ownList }
               onClick
                 ? onClick(data)
                 : ua.isPhone
-                ? history.push(`/support-detail/${data.id}`)
-                : setCur(data)
+                  ? history.push(`/support-detail/${data.id}`)
+                  : setCur(data)
             }
           />
-        </div>
+        </Grid>
       )}
       itemClass={"w-24 max-w-1/4"}
       detailRender={(data) => <SupportDetail data={data} isNur={false} />}
-      // detailModalSize='regular'
+    // detailModalSize='regular'
     />
   );
 };

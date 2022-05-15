@@ -1,8 +1,10 @@
+import { Typography } from '@material-ui/core'
+
 import t from "../t.js";
 const EventCard = (props) => {
   const { data, onClick, className } = props;
   return data ? (
-    <div
+    <Typography
       className={`border border-solid border-gray-700 px-2 rounded truncate cursor-pointer ${className}`}
       onClick={onClick}
       data-tip={`<div>${data.choiceList
@@ -13,9 +15,13 @@ const EventCard = (props) => {
               .join("")}</div>`
         )
         .join("<div>===========</div>")}</div>`}
+      style={{
+        marginRight: 10,
+        marginBottom: 10,
+      }}
     >
       {data.name}
-    </div>
+    </Typography>
   ) : null;
 };
 

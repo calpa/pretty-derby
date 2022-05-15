@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 
+import { Typography } from '@material-ui/core';
+
 import Navbar from "@material-tailwind/react/Navbar";
 import NavbarContainer from "@material-tailwind/react/NavbarContainer";
 import NavbarWrapper from "@material-tailwind/react/NavbarWrapper";
@@ -33,17 +35,17 @@ const Layout = ({ children, contentClass, rootClass }) => {
     { path: "/", title: "角色" },
     { path: "/support", title: "支援" },
     { path: "/skill", title: "技能" },
-    { path: "/race", title: "比赛" },
+    { path: "/race", title: "比賽" },
     { path: "/nurturing", title: "育成" },
-    { path: "/seed", title: "种马" },
+    { path: "/seed", title: "種馬" },
   ];
   const phoneList = [
     { path: "/", title: "角色" },
     { path: "/support", title: "支援" },
     { path: "/skill", title: "技能" },
-    { path: "/race", title: "比赛" },
+    { path: "/race", title: "比賽" },
     { path: "/nurturingMo", title: "育成" },
-    { path: "/seedMo", title: "种马" },
+    { path: "/seedMo", title: "種馬" },
   ];
   const list = ua.isPhone ? phoneList : pcList;
   return (
@@ -51,7 +53,7 @@ const Layout = ({ children, contentClass, rootClass }) => {
       <Navbar className="sticky top-0 z-50" color="lightBlue" navbar>
         <NavbarContainer>
           <NavbarWrapper>
-            <NavbarBrand>赛马娘</NavbarBrand>
+            <NavbarBrand>賽馬娘</NavbarBrand>
             <NavbarToggler
               color="white"
               onClick={() => setOpenNavbar(!openNavbar)}
@@ -68,7 +70,9 @@ const Layout = ({ children, contentClass, rootClass }) => {
                     active={location.pathname === item.path && "light"}
                     ripple="light"
                   >
-                    {t(item.title)}
+                    <Typography>
+                      {t(item.title)}
+                    </Typography>
                   </NavLink>
                 </Link>
               ))}
@@ -83,14 +87,6 @@ const Layout = ({ children, contentClass, rootClass }) => {
         </div>
         <LanButton></LanButton>
         <div className="flex-auto"></div>
-        <iframe
-          title="GitHub"
-          src="https://ghbtns.com/github-btn.html?user=wrrwrr111&repo=pretty-derby&type=star&count=true&size=large&v=2"
-          frameBorder="0"
-          scrolling="0"
-          width="160px"
-          height="30px"
-        ></iframe>
         <a
           target="_blank"
           rel="noreferrer"

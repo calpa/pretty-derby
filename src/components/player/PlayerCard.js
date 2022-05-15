@@ -1,31 +1,32 @@
+import { Grid, Typography } from '@material-ui/core';
 import { useState } from "react";
 import { cdnServer } from "../../config";
 import t from "../t.js";
 const PlayerCard = (props) => {
   const { data, onClick, className } = props;
-  const [show, setShow] = useState(true);
+  // const [show, setShow] = useState(true);
   return data ? (
     <div
       className={`relative cursor-pointer ${className}`}
       onClick={onClick}
-      style={{
-        paddingBottom: "100%",
-      }}
+    // style={{
+    // paddingBottom: "100%",
+    // }}
     >
-      <div className="absolute top-3 left-1 right-1 bottom-2 flex items-center justify-center flex-wrap border-2 border-solid border-gray-500 rounded-lg">
-        <p className="truncate">{t(data.charaName)}</p>
-        <p className="truncate">{t(data.name)}</p>
-      </div>
-      {show && (
-        <img
-          className="absolute top-0"
-          style={{ aspectRatio: "32 / 35" }}
-          onError={() => setShow(false)}
-          alt={data.name}
-          src={cdnServer + data.imgUrl}
-          width={"100%"}
-        />
-      )}
+      {/* {show && ( */}
+      <img
+        // className="absolute top-0"
+        style={{ aspectRatio: "32 / 35" }}
+        // onError={() => setShow(false)}
+        alt={data.name}
+        src={process.env.PUBLIC_URL + '/' + data.imgUrl}
+        width="80"
+      />
+      {/* )} */}
+      <Grid>
+        <Typography className="truncate">{t(data.charaName)}</Typography>
+        <Typography className="truncate">{t(data.name)}</Typography>
+      </Grid>
     </div>
   ) : null;
 };

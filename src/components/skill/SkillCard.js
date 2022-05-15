@@ -1,30 +1,42 @@
 import { useState } from "react";
+import { Divider, Grid, Typography } from '@material-ui/core'
+
 import { cdnServer } from "../../config";
 import t from "../t.js";
+
 const SkillCard = (props) => {
   const { data, onClick, className } = props;
-  const [show, setShow] = useState(true);
   return data ? (
-    <div
-      className={` rounded border-solid border-2  flex items-center cursor-pointer ${
-        data.rarity === 1 && "bg-white"
-      } ${data.rarity === 2 && "bg-yellow-300"} ${data.rarity === 3 && " bg-purple-400"} ${
-        data.rarity === 4 && " bg-purple-400"
-      } ${data.rarity === 5 && " bg-purple-400"} ${className}`}
+    <Grid
+      container
+      className={` rounded border-solid border-2  flex items-center cursor-pointer ${data.rarity === 2 && "bg-yellow-300"} ${className}`}
       onClick={onClick}
-      data-tip={`<div>${t(data.describe)}</div><div>${t(data.condition)}</div>`}
+      // data-tip={`<div>${t(data.describe)}</div><div>${t(data.condition)}</div>`}
+      style={{
+        marginBottom: 10,
+        padding: 10,
+      }}
     >
-      {show && (
+      <Grid container item xs={12}>
+        {/* {show && ( */}
         <img
           className="w-5 h-5 overflow-hidden"
-          onError={() => setShow(false)}
+          // onError={() => setShow(false)}
           alt={data.name}
-          src={cdnServer + data.imgUrl}
+          src={process.env.PUBLIC_URL + '/' + data.imgUrl}
           preview={false}
+          style={{
+            marginRight: 5,
+          }}
         />
-      )}
-      <div className="flex-auto truncate">{data.name}</div>
-    </div>
+        {/* )} */}
+        <Typography className="flex-auto truncate">{data.name}</Typography>
+      </Grid>
+      <Typography paragraph>
+        {data.grade_value} 分
+        {t(data.describe)}
+      </Typography>
+    </Grid>
   ) : null;
 };
 

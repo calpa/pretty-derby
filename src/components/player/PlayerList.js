@@ -17,6 +17,7 @@ const PlayerList = ({ className, dataList, onClick, sortFlag = false }) => {
   };
   return (
     <List
+      flexDirection="row"
       className={className}
       listKey="players"
       dataList={dataList}
@@ -30,15 +31,15 @@ const PlayerList = ({ className, dataList, onClick, sortFlag = false }) => {
               onClick
                 ? onClick(data)
                 : ua.isPhone
-                ? history.push(`/player-detail/${data.id}`)
-                : setCur(data)
+                  ? history.push(`/player-detail/${data.id}`)
+                  : setCur(data)
             }
           />
         </div>
       )}
       itemClass="w-24 max-w-1/4 "
       detailRender={(data) => <PlayerDetail data={data} isNur={false} />}
-      // detailModalSize='regular'
+    // detailModalSize='regular'
     />
   );
 };

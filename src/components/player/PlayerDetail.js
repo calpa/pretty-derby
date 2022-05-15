@@ -10,6 +10,7 @@ import {
   // RaceSchedule,
   RaceTimeline,
 } from "../race";
+import { Typography } from '@material-ui/core';
 // import {EffectTable} from './effect.js'
 
 const PlayerItem = ({ data }) => {
@@ -19,12 +20,12 @@ const PlayerItem = ({ data }) => {
       <img alt={name} src={cdnServer + imgUrl} height={64} width={64} />
       <div className="flex-auto flex flex-wrap h-full items-center">
         <div className="w-full flex items-center justify-between">
-          <div className=" text-xl font-semibold truncate">{name}</div>
-          <div className="flex-shrink-0 text-gray-700 truncate">{t(name)}</div>
+          <Typography className=" text-xl font-semibold truncate">{name}</Typography>
+          <Typography className="flex-shrink-0 text-gray-700 truncate">{t(name)}</Typography>
         </div>
         <div className="w-full flex items-center justify-between">
-          <div className=" text-xl font-semibold truncate">{charaName}</div>
-          <div className="flex-shrink-0 text-gray-700 truncate">{t(charaName)}</div>
+          <Typography className=" text-xl font-semibold truncate">{charaName}</Typography>
+          <Typography className="flex-shrink-0 text-gray-700 truncate">{t(charaName)}</Typography>
         </div>
       </div>
     </div>

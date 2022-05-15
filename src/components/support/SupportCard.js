@@ -3,7 +3,7 @@ import { cdnServer } from "../../config";
 import t from "../t.js";
 const SupportCard = (props) => {
   const { data, onClick, className } = props;
-  const [show, setShow] = useState(true);
+  // const [show, setShow] = useState(true);
   return data ? (
     <div
       className={`relative cursor-pointer ${className}`}
@@ -16,15 +16,15 @@ const SupportCard = (props) => {
         <p className="">{t(data.charaName)}</p>
         <p className="">{t(data.name)}</p>
       </div>
-      {show && (
-        <img
-          className="absolute top-0"
-          onError={() => setShow(false)}
-          alt={data.name}
-          src={cdnServer + data.imgUrl}
-          width={"100%"}
-        />
-      )}
+      {/* {show && ( */}
+      <img
+        className="absolute top-0"
+        // onError={(e) => console.error(e)}
+        alt={data.name}
+        src={`${process.env.PUBLIC_URL}/${data.imgUrl}`}
+        width={"100%"}
+      />
+      {/* )} */}
     </div>
   ) : null;
 };

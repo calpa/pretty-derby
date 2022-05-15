@@ -14,15 +14,18 @@ const cdnServer = "https://cdn.jsdelivr.net/gh/wrrwrr111/pretty-derby/public/";
 const allSkillList = db.get("skills").orderBy("db_id").value();
 
 const conditionOptions = [
+  // Distnace
   { label: t("短距離"), value: "distance_type==1" },
   { label: t("マイル"), value: "distance_type==2" },
   { label: t("中距離"), value: "distance_type==3" },
   { label: t("長距離"), value: "distance_type==4" },
+  // Running Style
   { label: t("逃げ"), value: "running_style==1" },
   { label: t("先行"), value: "running_style==2" },
   { label: t("差し"), value: "running_style==3" },
   { label: t("追込"), value: "running_style==4" },
   { label: t("通用"), value: "running_style==" },
+  // Phase
   { label: t("序盤"), value: "phase==0|phase_random==0" },
   { label: t("中盤"), value: "phase==1|phase_random==1" },
   { label: t("終盤"), value: "phase==2|phase_random==2" },
@@ -58,7 +61,7 @@ const rarityOptions = [
   { label: t("固有"), value: "固有" },
 ];
 const SkillFilterForm = (props) => {
-  const { onUpdate, needId, checkOnly, formName = "skill" } = props;
+  const { onUpdate, needId, checkOnly, formName = "skill", skillList = [] } = props;
 
   const { register, watch } = useForm();
 
@@ -68,7 +71,7 @@ const SkillFilterForm = (props) => {
   }, [watch]);
 
   const getFilterList = (value) => {
-    const q = value[`${formName}q`];
+    const q = value['q']
     const condition =
       value[`${formName}condition`] &&
       value[`${formName}condition`]?.map((e) => e.replace(formName, ""));
@@ -82,7 +85,7 @@ const SkillFilterForm = (props) => {
     }
     let tempList = [...allSkillList];
     if (q) {
-      tempList = tempList.filter((item) => item.name.indexOf(q) > -1);
+      tempList = tempList.filter((item) => item.name.includes(q));
     }
     if (type && type.length) {
       tempList = tempList.filter((skill) => {
@@ -120,12 +123,13 @@ const SkillFilterForm = (props) => {
         return list;
       }, []);
     }
+    // console.log(tempList)
     onUpdate(tempList);
   };
   return (
     <div className="flex flex-wrap">
-      <Input register={register} name="q" placeholder={t("输入关键词")} />
-      <p className="w-full  my-1 text-gray-700">触发条件</p>
+      <Input register={register} name="q" placeholder={t("輸入關鍵詞")} />
+      <p className="w-full  my-1 text-gray-700">觸發條件</p>
       {conditionOptions.map(({ label, value }) => (
         <CheckBox
           key={formName + "condition" + value}
@@ -135,15 +139,15 @@ const SkillFilterForm = (props) => {
           value={formName + value}
         />
       ))}
-      <p className="w-full my-1 text-gray-700">类型</p>
+      <p className="w-full my-1 text-gray-700">類型</p>
       {typeOptions.map(({ label, value }) => (
         <CheckBox
           key={formName + "type" + value}
           register={register}
           name={formName + "type"}
-          label={label}
+          label={`${label} (${skillList.filter(skill => skill.icon_id === Number(value)).length})`}
           value={formName + value}
-          icon={cdnServer + "img/skill_icons/" + value + ".png"}
+          icon={process.env.PUBLIC_URL + '/' + "img/skill_icons/" + value + ".png"}
         />
       ))}
       <p className="w-full  my-1 text-gray-700">稀有度</p>

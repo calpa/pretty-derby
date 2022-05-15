@@ -1,3 +1,5 @@
+import { Typography } from '@material-ui/core';
+
 const CheckBox = ({ register, name, value, label, icon }) => {
   return (
     <div key={value} className="flex items-center mr-1 mb-1">
@@ -13,8 +15,8 @@ const CheckBox = ({ register, name, value, label, icon }) => {
         className="flex items-center cursor-pointer text-gray-400 select-none transition-all duration-300"
       >
         <span className="relative w-5 h-5 inline-block mr-2 rounded border border-gray-500 transition-all duration-300"></span>
-        {icon && <img alt="" src={icon} width={20} />}
-        {label}
+        {icon && <img alt="" src={icon} width={80} />}
+        <Typography>{label}</Typography>
       </label>
     </div>
   );

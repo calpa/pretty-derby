@@ -12,6 +12,7 @@ import SkillList from "@/components/skill/SkillList";
 import SkillFilterForm from "@/components/skill/SkillFilterForm";
 
 import useViewport from "@/utils/useViewport";
+import { Grid } from '@material-ui/core';
 
 const TITLE = "技能 - 乌拉拉大胜利 - 赛马娘资料站";
 
@@ -33,32 +34,32 @@ const Skill = (props) => {
   return (
     <>
       {viewport?.width >= 768 ? (
-        <div
-          className="sticky top-20 hidden md:flex w-1/4 flex-col p-1 overflow-auto"
-          style={{
-            height: "calc(100vh - 120px)",
-          }}
+        <Grid
+          container
+          item
+          xs={3}
+          flexDirection="column"
         >
-          <SkillFilterForm onUpdate={setSkillList} />
-        </div>
+          <SkillFilterForm onUpdate={setSkillList} skillList={skillList} />
+        </Grid>
       ) : (
         <>
           <Button
             className="md:hidden fixed top-20 z-40 bg-opacity-80"
             onClick={() => setShow(true)}
           >
-            筛选
+            篩選
           </Button>
           <Modal size={"lg"} active={show} toggler={() => setShow(false)}>
-            <ModalHeader toggler={() => setShow(false)}>{"筛选技能"}</ModalHeader>
+            <ModalHeader toggler={() => setShow(false)}>{"篩選技能"}</ModalHeader>
             <ModalBody className="flex flex-col">
-              <SkillFilterForm onUpdate={setSkillList} />
+              <SkillFilterForm onUpdate={setSkillList} skillList={skillList} />
             </ModalBody>
           </Modal>
         </>
       )}
 
-      <SkillList className="w-full md:w-3/4" dataList={skillList} sortFlag={true} />
+      <SkillList className="w-full" dataList={skillList} sortFlag={true} />
     </>
   );
 };

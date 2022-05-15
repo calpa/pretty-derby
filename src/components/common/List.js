@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactTooltip from "react-tooltip";
 
-import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 import Modal from "@material-tailwind/react/Modal";
 import ModalBody from "@material-tailwind/react/ModalBody";
@@ -9,18 +9,20 @@ import ModalHeader from "@material-tailwind/react/ModalHeader";
 import db from "../../db.js";
 import t from "../t.js";
 
-const List = ({
-  className,
-  listKey,
-  sort,
-  filterFunc,
-  idList,
-  dataList,
-  itemRender,
-  itemClass,
-  detailRender,
-  detailModalSize,
-}) => {
+const List = (props) => {
+  const {
+    className,
+    listKey,
+    sort,
+    filterFunc,
+    idList,
+    dataList,
+    itemRender,
+    itemClass,
+    detailRender,
+    // detailModalSize,
+    flexDirection,
+  } = props
   const [show, setShow] = React.useState(false);
   const list = dataList
     ? dataList
@@ -51,7 +53,7 @@ const List = ({
   }
   if (sort) {
     return (
-      <div className={` flex flex-wrap ${className}`}>
+      <Grid className={` flex flex-wrap ${className}`}>
         {sort.data.map((sortItem) => {
           let sortList = list.filter((item) => {
             let flag = false;
@@ -67,8 +69,14 @@ const List = ({
             return <></>;
           }
           return (
-            <Grid>
-              <div className="w-full text-lg font-semibold text-center">{t(sortItem.title)}</div>
+            <Grid container item xs={4} flexDirection={flexDirection} style={{
+              padding: 10,
+            }}
+              alignContent="baseline"
+            >
+              <Grid container item xs={12}>
+                <Typography variant="h4" component="h2">{t(sortItem.title)}</Typography>
+              </Grid>
               {sortList.map((data) => itemRender(data, showModal))}
               {itemClass && (
                 <>
@@ -81,16 +89,16 @@ const List = ({
           );
         })}
         {modal}
-      </div>
+      </Grid>
     );
   } else {
     return (
-      <div className={` flex flex-wrap ${className}`}>
+      <Grid className={` flex flex-wrap ${className}`} container flexDirection={flexDirection}>
         {list
           .filter((data) => (filterFunc ? filterFunc(data) : true))
           .map((data) => itemRender(data, showModal))}
         {modal}
-      </div>
+      </Grid>
     );
   }
 };
