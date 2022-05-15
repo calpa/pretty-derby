@@ -11,9 +11,9 @@ import App from "./app";
 const Index = () => {
   return (
     <Router>
-      <App></App>
+      <App />
     </Router>
   );
 };
 
-ReactDOM.render(<Index></Index>, document.getElementById("root"));
+ReactDOM.render(<Index />, document.getElementById("root"));

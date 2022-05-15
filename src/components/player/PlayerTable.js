@@ -69,7 +69,7 @@ const PlayerTable = (props) => {
       key: "imgUrl",
       width: 100,
       render: (text, record) => (
-        <Card data={record} onSelect={props.onSelect} name={false}></Card>
+        <Card data={record} onSelect={props.onSelect} name={false} />
       ),
     },
     { title: "称号", dataIndex: "name", key: "name", render: (value) => t(value) },

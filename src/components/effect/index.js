@@ -127,7 +127,7 @@ const EffectTable = (props) => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <Table columns={columns} dataSource={props.effects} divKey="type" pagination={false}></Table>
+      <Table columns={columns} dataSource={props.effects} divKey="type" pagination={false} />
     </div>
   );
 };

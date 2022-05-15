@@ -85,8 +85,8 @@ const Layout = ({ children, contentClass, rootClass }) => {
         <div className="cursor-pointer" data-tip="无法打开育成页面时点一哈" onClick={resetNur}>
           {t("初始化育成")}
         </div>
-        <LanButton></LanButton>
-        <div className="flex-auto"></div>
+        <LanButton />
+        <div className="flex-auto" />
         <a
           target="_blank"
           rel="noreferrer"
