@@ -7,6 +7,7 @@ import { Row, Col, Timeline, Checkbox } from "antd";
 // import { createFormattedComponent } from 'react-intl/src/components/createFormattedComponent';
 // import { getTimeProps } from 'antd/lib/date-picker/generatePicker';
 import t from "../t.js";
+import { Typography } from '@material-ui/core';
 
 // const ua = dbL.get('ua').value();
 
@@ -79,8 +80,7 @@ const getGolds = (race) => {
     .reduce((golds, raceGold) => {
       if (raceGold.raceNames.indexOf(race.uniqueName) !== -1) {
         golds.push(
-          `${raceGold.name} ${raceGold.raceNames.indexOf(race.uniqueName) + 1}/${
-            raceGold.raceNames.length
+          `${raceGold.name} ${raceGold.raceNames.indexOf(race.uniqueName) + 1}/${raceGold.raceNames.length
           }`
         );
       }
@@ -125,10 +125,11 @@ const RaceTimeline = React.memo((props) => {
       golds = getGolds(curRace);
       str.push(
         <Timeline.Item label={getDate(i)} color="red" className="text-base" key={id}>
-          {`${curRace.grade} / ${curRace.distanceType} / ${curRace.distance} / ${curRace.name} / ${
-            props.raceList[i].goal || "参赛"
-          }
+          <Typography>
+            {`${curRace.grade} / ${curRace.distanceType} / ${curRace.distance} / ${curRace.name} / ${props.raceList[i].goal || "参赛"
+              }
           ${golds ? " / " + golds : ""}`}
+          </Typography>
         </Timeline.Item>
       );
     } else if (props.filterRace && props.filterRace[i]) {
@@ -142,8 +143,10 @@ const RaceTimeline = React.memo((props) => {
             style={{ fontSize: "14px" }}
             key={id}
           >
-            {`${curRace.grade} / ${curRace.distanceType} / ${curRace.distance} / ${curRace.name}
+            <Typography>
+              {`${curRace.grade} / ${curRace.distanceType} / ${curRace.distance} / ${curRace.name}
             ${golds ? " / " + golds : ""}`}
+            </Typography>
           </Timeline.Item>
         );
       });

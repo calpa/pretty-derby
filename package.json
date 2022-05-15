@@ -2,7 +2,6 @@
   "name": "race-girl",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://wrrwrr111.github.io/pretty-derby",
   "dependencies": {
     "@ant-design/colors": "^6.0.0",
     "@emotion/react": "^11.7.0",
