@@ -156,11 +156,11 @@ const Nurturing = (props) => {
     //根据条件过滤
     let tmpRaceList = Object.values(filterCondition).some((f) => f.length > 0)
       ? Object.entries(filterCondition)
-          .filter(([key, filters]) => filters.length > 0)
-          .reduce(
-            (result, [key, filters]) => result.filter((race) => filters.includes(race[key])),
-            races
-          )
+        .filter(([key, filters]) => filters.length > 0)
+        .reduce(
+          (result, [key, filters]) => result.filter((race) => filters.includes(race[key])),
+          races
+        )
       : [];
     //过滤后整理成 dataNum:[raceId]
     let tmpFilterRace = {};
@@ -204,7 +204,7 @@ const Nurturing = (props) => {
         )}
         <div className="flex-auto flex flex-wrap items-center">
           <Button size="sm" buttonType="outline" onClick={showPlayer}>
-            {t("选择马娘")}
+            {t("選擇馬娘")}
           </Button>
           <Button size="sm" buttonType="outline" onClick={showSupport2}>
             {t("支援卡查询")}
@@ -218,7 +218,7 @@ const Nurturing = (props) => {
               <RaceCheckbox onChange={onChangeRace} raceFilterCondition={raceFilterCondition} />
             }
           >
-            <Button>{t("比赛")}</Button>
+            <Button>{t("比賽")}</Button>
           </Popover>
           <Popover
             trigger="click"

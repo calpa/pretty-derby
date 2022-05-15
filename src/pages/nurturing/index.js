@@ -122,11 +122,11 @@ const Nurturing = () => {
     //根据条件过滤
     let tmpRaceList = Object.values(filterCondition).some((f) => f.length > 0)
       ? Object.entries(filterCondition)
-          .filter(([key, filters]) => filters.length > 0)
-          .reduce(
-            (result, [key, filters]) => result.filter((race) => filters.includes(race[key])),
-            races
-          )
+        .filter(([key, filters]) => filters.length > 0)
+        .reduce(
+          (result, [key, filters]) => result.filter((race) => filters.includes(race[key])),
+          races
+        )
       : [];
     //过滤后整理成 dataNum:[raceId]
     let tmpFilterRace = {};
@@ -220,7 +220,7 @@ const Nurturing = () => {
       >
         <div key="a" className={panelClass}>
           <div className={headClass} onClick={showPlayer}>
-            {t("选择马娘")}
+            {t("選擇馬娘")}
           </div>
           {player.id && (
             <img
@@ -235,7 +235,7 @@ const Nurturing = () => {
           <div className={headClass}>{t("操作")}</div>
           <div className="flex flex-wrap">
             <Button size="sm" buttonType="outline" className="add-player" onClick={showPlayer}>
-              {t("选择马娘")}
+              {t("選擇馬娘")}
             </Button>
             <Button size="sm" buttonType="outline" onClick={showSupport2}>
               {t("支援卡查询")}
@@ -247,7 +247,7 @@ const Nurturing = () => {
               }
             >
               <Button size="sm" buttonType="outline">
-                {t("比赛")}
+                {t("比賽")}
               </Button>
             </Popover>
             <MyDecks player={player} supports={supports} loadDeck={loadDeck} />
@@ -275,7 +275,7 @@ const Nurturing = () => {
           </ScrollBars>
         </div>
         <div key="e" className={panelClass}>
-          <div className={headClass}>{t("比赛")}</div>
+          <div className={headClass}>{t("比賽")}</div>
           <ScrollBars autoHide={true} style={{ ...pBodyStyle }}>
             <RaceTimeline raceList={player.raceList || []} filterRace={filterRace} />
           </ScrollBars>
