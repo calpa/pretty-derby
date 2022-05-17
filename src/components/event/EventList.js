@@ -4,16 +4,28 @@ import EventCard from "./EventCard";
 import EventDetail from "./EventDetail";
 import List from "../common/List";
 
-const EventList = ({ dataList, idList, onClick, sortFlag = false, type = "all" }) => {
-  const sort = sortFlag
-    ? {
-      data: [
-        { title: "切れ者", func: (data) => JSON.stringify(data)?.indexOf("切れ者") !== -1 },
-        { title: "有選項", func: (data) => data?.choiceList.length > 1 },
-        { title: "無選項", func: (data) => data?.choiceList.length <= 1 },
-      ],
+const events = [
+  { title: "切れ者", func: (data) => JSON.stringify(data)?.indexOf("切れ者") !== -1 },
+  { title: "有選項", func: (data) => data?.choiceList.length > 1 },
+  { title: "無選項", func: (data) => data?.choiceList.length <= 1 },
+]
+
+const EventList = ({ dataList, idList, onClick, sortFlag = false, type = "all", isNur }) => {
+  let sort = null;
+  if (sortFlag) {
+    sort = {
+      data: events
     }
-    : null;
+  }
+  if (isNur) {
+    sort = {
+      data: [
+        events[1],
+        events[0],
+        events[2]
+      ]
+    }
+  }
   const filterFunc =
     type === "multi"
       ? (data) => {
@@ -22,6 +34,7 @@ const EventList = ({ dataList, idList, onClick, sortFlag = false, type = "all" }
       : null;
   return (
     <List
+      fullWidth
       listKey="events"
       dataList={dataList}
       idList={idList}

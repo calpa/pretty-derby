@@ -115,7 +115,7 @@ const PlayerInput = ({ value = {}, onChange }) => {
         width={"80%"}
         bodyStyle={{ maxHeight: "80vh", overflow: "auto" }}
       >
-        <PlayerList sortFlag={true} onClick={handleSelectPlayer} />
+        <PlayerList sortFlag onClick={handleSelectPlayer} />
       </Modal>
     </>
   );
@@ -158,7 +158,7 @@ const SupportInput = ({ value = {}, onChange }) => {
         bodyStyle={{ height: "90vh" }}
       >
         <div className="w-full h-full overflow-hidden flex relative">
-          <SupportListWithFilter formName="seedSup" onClick={handleSelectSupport} sortFlag={true} />
+          <SupportListWithFilter formName="seedSup" onClick={handleSelectSupport} sortFlag />
         </div>
       </Modal>
     </>
@@ -308,7 +308,7 @@ const SeedInput = (props) => {
             rules={[
               { required: true },
               ({ getFieldValue }) => ({
-                validator(_, value) {
+                validator (_, value) {
                   if (value.match(/^[0-9]\d*$/g) && value.length === 9) {
                     return Promise.resolve();
                   }

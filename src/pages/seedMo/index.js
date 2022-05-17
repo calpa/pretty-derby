@@ -111,7 +111,7 @@ const PlayerInput = ({ value = {}, onChange }) => {
         width={"100%"}
         bodyStyle={{ maxHeight: "80vh", overflow: "auto" }}
       >
-        <PlayerList sortFlag={true} onClick={handleSelectPlayer} />
+        <PlayerList sortFlag onClick={handleSelectPlayer} />
       </Modal>
     </>
   );
@@ -156,7 +156,7 @@ const SupportInput = ({ value = {}, onChange }) => {
         bodyStyle={{ height: "80vh" }}
       >
         <div className="w-full h-full overflow-hidden flex relative">
-          <SupportListWithFilter formName="seedSupMo" onClick={handleSelectSupport} sortFlag={true} />
+          <SupportListWithFilter formName="seedSupMo" onClick={handleSelectSupport} sortFlag />
         </div>
       </Modal>
     </>

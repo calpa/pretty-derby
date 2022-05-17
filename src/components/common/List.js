@@ -8,6 +8,7 @@ import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalHeader from "@material-tailwind/react/ModalHeader";
 import db from "../../db.js";
 import t from "../t.js";
+import Scrollbars from 'react-custom-scrollbars';
 
 const List = (props) => {
   const {
@@ -22,6 +23,7 @@ const List = (props) => {
     detailRender,
     // detailModalSize,
     flexDirection,
+    fullWidth
   } = props
   const [show, setShow] = React.useState(false);
   const list = dataList
@@ -69,15 +71,18 @@ const List = (props) => {
             return <></>;
           }
           return (
-            <Grid container item xs={4} flexDirection={flexDirection} style={{
+            <Grid container item flexDirection={flexDirection} style={{
               padding: 10,
             }}
               alignContent="baseline"
+              xs={fullWidth ? 12 : 4}
             >
               <Grid container item xs={12}>
                 <Typography variant="h4" component="h2">{t(sortItem.title)}</Typography>
               </Grid>
-              {sortList.map((data) => itemRender(data, showModal))}
+              <Grid container>
+                {sortList.map((data) => itemRender(data, showModal))}
+              </Grid>
               {itemClass && (
                 <>
                   {[...new Array(20)].map((i) => (

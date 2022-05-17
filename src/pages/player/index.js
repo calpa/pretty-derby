@@ -14,7 +14,7 @@ const Player = (props) => {
     document.title = TITLE;
   });
   return (
-    <PlayerList className="justify-between" sortFlag={true} onClick={props.onClick} />
+    <PlayerList className="justify-between" sortFlag onClick={props.onClick} />
   );
 };
 

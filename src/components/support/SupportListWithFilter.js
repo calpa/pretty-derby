@@ -94,7 +94,7 @@ const SupportListWithFilter = (props) => {
 
       <SupportList
         className={`md:w-3/4 justify-between ${limitHeight && "h-80vh overflow-auto"}`}
-        sortFlag={true}
+        sortFlag
         dataList={list}
         ownList={showMode ? chosenList : null}
         onClick={chooseMode ? onSelect : onClick}

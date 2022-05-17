@@ -49,7 +49,7 @@ const IntroIndex = (props) => {
       element: '.menu-nurturing2',
       intro: <>
         <p>【选择马娘】选择培训的马娘</p>
-        <p>【选择支援卡】选择使用的支援卡</p>
+        <p>【選擇支援卡】选择使用的支援卡</p>
         <p>【卡组】卡组保存、读取、删除</p>
       </>,
       href: '/nurturing2'

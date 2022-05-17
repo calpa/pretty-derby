@@ -6,7 +6,9 @@ import t from '../components/t.js'
 
 const BuffButton = (props) => {
   return (
-    <Button size='sm' buttonType='outline' data-tip='buff list'>Buff</Button>
+    <Button size='md' buttonType='outline' data-tip='buff list'>
+      Buff
+    </Button>
   )
 }
 const buffs = db.get('buffs').value()

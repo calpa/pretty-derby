@@ -31,6 +31,7 @@ import "react-grid-layout/css/styles.css";
 import SupportList from "@/components/support/SupportList";
 import SupportListWithFilter from "@/components/support/SupportListWithFilter";
 import PlayerList from "@/components/player/PlayerList";
+import { Typography } from '@material-ui/core';
 // import Checkbox from 'antd/lib/checkbox/Checkbox';
 
 const cdnServer = "https://cdn.jsdelivr.net/gh/wrrwrr111/pretty-derby@master/public/";
@@ -262,26 +263,26 @@ const Nurturing = () => {
           </div>
         </div>
         <div key="c" className={panelClass}>
-          <div className={headClass}>{t("事件")}</div>
+          <Typography className={headClass}>{t("事件")}</Typography>
           <ScrollBars autoHide={true} style={{ ...pBodyStyle }}>
             {/* <p>{player.id}</p> */}
-            <EventList idList={player.eventList} sortFlag={true} />
+            <EventList idList={player.eventList} isNur sortFlag />
           </ScrollBars>
         </div>
         <div key="d" className={panelClass}>
-          <div className={headClass}>{t("技能")}</div>
+          <Typography className={headClass}>{t("技能")}</Typography>
           <ScrollBars autoHide={true} style={{ ...pBodyStyle }}>
-            <SkillList idList={player.skillList} isNur={true} size="small" />
+            <SkillList idList={player.skillList} isNur size="small" />
           </ScrollBars>
         </div>
         <div key="e" className={panelClass}>
-          <div className={headClass}>{t("比賽")}</div>
+          <Typography className={headClass}>{t("比賽")}</Typography>
           <ScrollBars autoHide={true} style={{ ...pBodyStyle }}>
             <RaceTimeline raceList={player.raceList || []} filterRace={filterRace} />
           </ScrollBars>
         </div>
         <div key="f" className={panelClass}>
-          <div className={headClass}>{t("隐藏事件")}</div>
+          <Typography className={headClass}>{t("隐藏事件")}</Typography>
           <ScrollBars autoHide={true} style={{ ...pBodyStyle }}>
             <EventList idList={player.hideEvent} />
           </ScrollBars>
@@ -292,13 +293,13 @@ const Nurturing = () => {
             return (
               <div key={`s${index}`} className={panelClass}>
                 <div className={headClass}>
-                  <span
+                  <Typography
                     className="panel-title"
                     onClick={() => showSupport(index)}
                     style={{ cursor: "pointer" }}
                   >
-                    {t("选择支援卡")}
-                  </span>
+                    {t("選擇支援卡")}
+                  </Typography>
                 </div>
                 <ScrollBars autoHide={true} style={{ ...pBodyStyle }}>
                   <div style={{ display: "flex" }}>
@@ -311,13 +312,13 @@ const Nurturing = () => {
                       <EventList idList={supports[index].eventList} pid={supports[index].id} />
                     </div>
                   </div>
-                  <div style={{ margin: "4px 0", background: "rgba(255,255,255,0.6)" }}>
-                    {t("培训技能")}
-                  </div>
+                  <Typography style={{ margin: "4px 0", background: "rgba(255,255,255,0.6)" }}>
+                    {t("培訓技能")}
+                  </Typography>
                   <SkillList idList={supports[index].possessionSkill} isNur={true} size="small" />
-                  <div style={{ margin: "4px 0", background: "rgba(255,255,255,0.6)" }}>
+                  <Typography style={{ margin: "4px 0", background: "rgba(255,255,255,0.6)" }}>
                     {t("事件技能")}
-                  </div>
+                  </Typography>
                   <SkillList
                     idList={supports[index].trainingEventSkill}
                     isNur={true}
@@ -330,7 +331,7 @@ const Nurturing = () => {
             return (
               <div key={`s${index}`} className={panelClass}>
                 <Button size="sm" buttonType="outline" onClick={() => showSupport(index)}>
-                  {t("选择支援卡")}
+                  {t("選擇支援卡")}
                 </Button>
               </div>
             );
@@ -338,15 +339,15 @@ const Nurturing = () => {
         })}
       </GridLayout>
       <Modal size="lg" active={isPlayerVisible} toggler={closePlayer}>
-        <ModalHeader toggler={closePlayer}>选择支援卡</ModalHeader>
+        <ModalHeader toggler={closePlayer}>選擇支援卡</ModalHeader>
         <ModalBody>
           <div className="w-full h-full" style={{ maxHeight: "80vh", overflow: "auto" }}>
-            <PlayerList onClick={handleSelectPlayer} sortFlag={true} />
+            <PlayerList onClick={handleSelectPlayer} sortFlag />
           </div>
         </ModalBody>
       </Modal>
       <Modal size="lg" active={isSupportVisible} toggler={closeSupport}>
-        <ModalHeader toggler={closeSupport}>选择支援卡</ModalHeader>
+        <ModalHeader toggler={closeSupport}>選擇支援卡</ModalHeader>
         <ModalBody>
           <div
             className="w-full h-full flex relative"
@@ -356,7 +357,7 @@ const Nurturing = () => {
               formName="nurSup"
               onClick={needSelect ? handleSelectSupport : null}
               limitHeight={true}
-              sortFlag={true}
+              sortFlag
             />
           </div>
         </ModalBody>

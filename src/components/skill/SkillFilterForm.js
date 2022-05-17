@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "@material-tailwind/react/Button";
+import { Grid } from "@material-ui/core"
+
 
 import db from "../../db.js";
 import dbL from "../../dbL.js";
@@ -15,31 +17,37 @@ const allSkillList = db.get("skills").orderBy("db_id").value();
 
 const conditionOptions = [
   // Distnace
-  { label: t("短距離"), value: "distance_type==1" },
-  { label: t("マイル"), value: "distance_type==2" },
-  { label: t("中距離"), value: "distance_type==3" },
-  { label: t("長距離"), value: "distance_type==4" },
+  [
+    { label: t("短距離"), value: "distance_type==1" },
+    { label: t("マイル"), value: "distance_type==2" },
+    { label: t("中距離"), value: "distance_type==3" },
+    { label: t("長距離"), value: "distance_type==4" },
+  ],
   // Running Style
-  { label: t("逃げ"), value: "running_style==1" },
-  { label: t("先行"), value: "running_style==2" },
-  { label: t("差し"), value: "running_style==3" },
-  { label: t("追込"), value: "running_style==4" },
-  { label: t("通用"), value: "running_style==" },
+  [
+    { label: t("逃げ"), value: "running_style==1" },
+    { label: t("先行"), value: "running_style==2" },
+    { label: t("差し"), value: "running_style==3" },
+    { label: t("追込"), value: "running_style==4" },
+    { label: t("通用"), value: "running_style==" },
+  ],
   // Phase
-  { label: t("序盤"), value: "phase==0|phase_random==0" },
-  { label: t("中盤"), value: "phase==1|phase_random==1" },
-  { label: t("終盤"), value: "phase==2|phase_random==2" },
-  { label: t("冲刺"), value: "phase==3|phase_random==3" },
-  { label: t("コーナー"), value: "corner_random==1" },
-  { label: t("直線"), value: "straight_random==1" },
-  { label: t("最終直線/コーナー"), value: "is_finalcorner==1" },
+  [
+    { label: t("序盤"), value: "phase==0|phase_random==0" },
+    { label: t("中盤"), value: "phase==1|phase_random==1" },
+    { label: t("終盤"), value: "phase==2|phase_random==2" },
+    { label: t("冲刺"), value: "phase==3|phase_random==3" },
+    { label: t("コーナー"), value: "corner_random==1" },
+    { label: t("直線"), value: "straight_random==1" },
+    { label: t("最終直線/コーナー"), value: "is_finalcorner==1" },
+  ],
 ];
 const typeOptions = [
-  { label: "速度被动", value: "10011" },
-  { label: "耐力被动", value: "10021" },
-  { label: "力量被动", value: "10031" },
-  { label: "毅力被动", value: "10041" },
-  { label: "智力被动", value: "10051" },
+  { label: "速度被動", value: "10011" },
+  { label: "耐力被動", value: "10021" },
+  { label: "力量被動", value: "10031" },
+  { label: "毅力被動", value: "10041" },
+  { label: "智力被動", value: "10051" },
   { label: "耐力恢复", value: "20021" },
   { label: "速度提高", value: "20011" },
   // {label:'20031',value:'20031'},
@@ -71,6 +79,7 @@ const SkillFilterForm = (props) => {
   }, [watch]);
 
   const getFilterList = (value) => {
+    debugger;
     const q = value['q']
     const condition =
       value[`${formName}condition`] &&
@@ -129,15 +138,31 @@ const SkillFilterForm = (props) => {
   return (
     <div className="flex flex-wrap">
       <Input register={register} name="q" placeholder={t("輸入關鍵詞")} />
+      <Button
+        onClick={() => getFilterList({
+          q: "",
+          skillcondition: [],
+          skillrare: false,
+          skilltype: ['skill20011'],
+        })}
+        style={{
+          marginTop: 10,
+          marginBottom: 10,
+        }}
+      >重置搜尋</Button>
       <p className="w-full  my-1 text-gray-700">觸發條件</p>
-      {conditionOptions.map(({ label, value }) => (
-        <CheckBox
-          key={formName + "condition" + value}
-          register={register}
-          name={formName + "condition"}
-          label={label}
-          value={formName + value}
-        />
+      {conditionOptions.map((list) => (
+        <Grid container item xs={12}>
+          {list.map(({ label, value }) => (
+            <CheckBox
+              key={formName + "condition" + value}
+              register={register}
+              name={formName + "condition"}
+              label={label}
+              value={formName + value}
+            />
+          ))}
+        </Grid>
       ))}
       <p className="w-full my-1 text-gray-700">類型</p>
       {typeOptions.map(({ label, value }) => (

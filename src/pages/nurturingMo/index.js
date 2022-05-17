@@ -274,7 +274,7 @@ const Nurturing = (props) => {
               icon={<EditOutlined />}
               onClick={() => showSupport(index)}
             >
-              {t("选择支援卡")}
+              {t("選擇支援卡")}
             </Button>
             {supports[index] && supports[index].id && (
               <img
@@ -301,7 +301,7 @@ const Nurturing = (props) => {
         width={"100%"}
         bodyStyle={{ maxHeight: "80vh", overflow: "auto" }}
       >
-        <PlayerList sortFlag={true} onClick={handleSelectPlayer} />
+        <PlayerList sortFlag onClick={handleSelectPlayer} />
       </Modal>
       <Modal
         visible={isSupportVisible}
@@ -314,7 +314,7 @@ const Nurturing = (props) => {
         <SupportListWithFilter
           formName="nurSupMo"
           onClick={needSelect ? handleSelectSupport : handleSelectSupportShow}
-          sortFlag={true}
+          sortFlag
         />
       </Modal>
     </>

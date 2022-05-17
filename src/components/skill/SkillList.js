@@ -17,6 +17,7 @@ const SkillList = ({ className, idList, dataList, onClick, sortFlag = false, siz
   };
   return (
     <List
+      fullWidth
       className={className}
       listKey="skills"
       idList={idList}

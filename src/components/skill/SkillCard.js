@@ -32,7 +32,7 @@ const SkillCard = (props) => {
         {/* )} */}
         <Typography className="flex-auto truncate">{data.name} ({data.grade_value} 分)</Typography>
       </Grid>
-      <Typography paragraph>
+      <Typography>
         {t(data.describe)}
       </Typography>
     </Grid>

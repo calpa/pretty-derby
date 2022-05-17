@@ -59,7 +59,7 @@ const Skill = (props) => {
         </>
       )}
 
-      <SkillList className="w-full" dataList={skillList} sortFlag={true} />
+      <SkillList className="w-full" dataList={skillList} sortFlag />
     </>
   );
 };

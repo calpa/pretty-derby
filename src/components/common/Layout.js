@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 
 import Navbar from "@material-tailwind/react/Navbar";
 import NavbarContainer from "@material-tailwind/react/NavbarContainer";
@@ -80,34 +80,11 @@ const Layout = ({ children, contentClass, rootClass }) => {
       </Navbar>
       {children}
       <div className="w-full flex items-center flex-wrap pb-10 md:pb-0">
-        <div className="cursor-pointer" data-tip="无法打开育成页面时点一哈" onClick={resetNur}>
+        <Button className="cursor-pointer" data-tip="无法打开育成页面时点一哈" onClick={resetNur} variant="contained" >
           {t("初始化育成")}
-        </div>
+        </Button>
         <LanButton />
         <div className="flex-auto" />
-        <a
-          target="_blank"
-          rel="noreferrer"
-          href="https://qm.qq.com/cgi-bin/qm/qr?k=f2Q2MIqkkxiiYq-sfRYmI7E4v17-r3V2&jump_from=webapi"
-          data-tip={`
-          <img src=${cdnServer + "img/q.jpg"} width={300} />
-          <p>${t("闲聊为主")}</p>
-          `}
-        >
-          <img
-            border="0"
-            src="//pub.idqqimg.com/wpa/images/group.png"
-            alt="轻 松 赛 马"
-            title="轻 松 赛 马"
-          />
-        </a>
-        <div
-          className="flex mx-2 items-center"
-          data-tip={`<img src=${cdnServer + "img/weapp.jpg"} width={200} />`}
-        >
-          <img alt="reimu" src={cdnServer + "reimu.gif"} preview={false} width={24} />
-          <div>{t("微信小程序")}</div>
-        </div>
       </div>
     </div>
   );
