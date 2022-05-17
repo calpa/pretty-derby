@@ -27,13 +27,11 @@ const SkillList = ({ className, idList, dataList, onClick, sortFlag = false, siz
         <SkillCard
           key={data.id}
           data={data}
-          onClick={
-            () => (onClick ? onClick(data) : setCur(data))
-          }
+          onClick={() => (onClick ? onClick(data) : setCur(data))}
         />
       )}
       detailRender={(data) => <SkillDetail data={data} isNur={false} />}
-    // detailModalSize='regular'
+      // detailModalSize='regular'
     />
   );
 };

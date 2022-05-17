@@ -12,7 +12,7 @@ import SkillList from "@/components/skill/SkillList";
 import SkillFilterForm from "@/components/skill/SkillFilterForm";
 
 import useViewport from "@/utils/useViewport";
-import { Grid } from '@material-ui/core';
+import { Grid } from "@material-ui/core";
 
 const TITLE = "技能 - 乌拉拉大胜利 - 赛马娘资料站";
 
@@ -34,12 +34,7 @@ const Skill = (props) => {
   return (
     <>
       {viewport?.width >= 768 ? (
-        <Grid
-          container
-          item
-          xs={3}
-          flexDirection="column"
-        >
+        <Grid container item xs={3} flexDirection="column">
           <SkillFilterForm onUpdate={setSkillList} skillList={skillList} />
         </Grid>
       ) : (

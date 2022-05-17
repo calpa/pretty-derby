@@ -308,7 +308,7 @@ const SeedInput = (props) => {
             rules={[
               { required: true },
               ({ getFieldValue }) => ({
-                validator (_, value) {
+                validator(_, value) {
                   if (value.match(/^[0-9]\d*$/g) && value.length === 9) {
                     return Promise.resolve();
                   }
