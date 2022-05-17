@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "@material-tailwind/react/Button";
-import { Grid } from "@material-ui/core"
-
+import { Grid } from "@material-ui/core";
 
 import db from "../../db.js";
 import dbL from "../../dbL.js";
@@ -80,7 +79,7 @@ const SkillFilterForm = (props) => {
 
   const getFilterList = (value) => {
     debugger;
-    const q = value['q']
+    const q = value["q"];
     const condition =
       value[`${formName}condition`] &&
       value[`${formName}condition`]?.map((e) => e.replace(formName, ""));
@@ -139,17 +138,21 @@ const SkillFilterForm = (props) => {
     <div className="flex flex-wrap">
       <Input register={register} name="q" placeholder={t("輸入關鍵詞")} />
       <Button
-        onClick={() => getFilterList({
-          q: "",
-          skillcondition: [],
-          skillrare: false,
-          skilltype: ['skill20011'],
-        })}
+        onClick={() =>
+          getFilterList({
+            q: "",
+            skillcondition: [],
+            skillrare: false,
+            skilltype: ["skill20011"],
+          })
+        }
         style={{
           marginTop: 10,
           marginBottom: 10,
         }}
-      >重置搜尋</Button>
+      >
+        重置搜尋
+      </Button>
       <p className="w-full  my-1 text-gray-700">觸發條件</p>
       {conditionOptions.map((list) => (
         <Grid container item xs={12}>
@@ -170,9 +173,11 @@ const SkillFilterForm = (props) => {
           key={formName + "type" + value}
           register={register}
           name={formName + "type"}
-          label={`${label} (${skillList.filter(skill => skill.icon_id === Number(value)).length})`}
+          label={`${label} (${
+            skillList.filter((skill) => skill.icon_id === Number(value)).length
+          })`}
           value={formName + value}
-          icon={process.env.PUBLIC_URL + '/' + "img/skill_icons/" + value + ".png"}
+          icon={process.env.PUBLIC_URL + "/" + "img/skill_icons/" + value + ".png"}
         />
       ))}
       <p className="w-full  my-1 text-gray-700">稀有度</p>

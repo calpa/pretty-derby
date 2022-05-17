@@ -8,29 +8,25 @@ const events = [
   { title: "切れ者", func: (data) => JSON.stringify(data)?.indexOf("切れ者") !== -1 },
   { title: "有選項", func: (data) => data?.choiceList.length > 1 },
   { title: "無選項", func: (data) => data?.choiceList.length <= 1 },
-]
+];
 
 const EventList = ({ dataList, idList, onClick, sortFlag = false, type = "all", isNur }) => {
   let sort = null;
   if (sortFlag) {
     sort = {
-      data: events
-    }
+      data: events,
+    };
   }
   if (isNur) {
     sort = {
-      data: [
-        events[1],
-        events[0],
-        events[2]
-      ]
-    }
+      data: [events[1], events[0], events[2]],
+    };
   }
   const filterFunc =
     type === "multi"
       ? (data) => {
-        return data?.choiceList.length > 1;
-      }
+          return data?.choiceList.length > 1;
+        }
       : null;
   return (
     <List

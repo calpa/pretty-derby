@@ -13,9 +13,7 @@ const Player = (props) => {
   useDidRecover(() => {
     document.title = TITLE;
   });
-  return (
-    <PlayerList className="justify-between" sortFlag onClick={props.onClick} />
-  );
+  return <PlayerList className="justify-between" sortFlag onClick={props.onClick} />;
 };
 
 export default Player;

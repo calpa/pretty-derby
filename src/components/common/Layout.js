@@ -80,7 +80,12 @@ const Layout = ({ children, contentClass, rootClass }) => {
       </Navbar>
       {children}
       <div className="w-full flex items-center flex-wrap pb-10 md:pb-0">
-        <Button className="cursor-pointer" data-tip="无法打开育成页面时点一哈" onClick={resetNur} variant="contained" >
+        <Button
+          className="cursor-pointer"
+          data-tip="无法打开育成页面时点一哈"
+          onClick={resetNur}
+          variant="contained"
+        >
           {t("初始化育成")}
         </Button>
         <LanButton />

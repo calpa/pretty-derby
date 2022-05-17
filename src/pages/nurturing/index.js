@@ -31,7 +31,7 @@ import "react-grid-layout/css/styles.css";
 import SupportList from "@/components/support/SupportList";
 import SupportListWithFilter from "@/components/support/SupportListWithFilter";
 import PlayerList from "@/components/player/PlayerList";
-import { Typography } from '@material-ui/core';
+import { Typography } from "@material-ui/core";
 // import Checkbox from 'antd/lib/checkbox/Checkbox';
 
 const cdnServer = "https://cdn.jsdelivr.net/gh/wrrwrr111/pretty-derby@master/public/";
@@ -123,11 +123,11 @@ const Nurturing = () => {
     //根据条件过滤
     let tmpRaceList = Object.values(filterCondition).some((f) => f.length > 0)
       ? Object.entries(filterCondition)
-        .filter(([key, filters]) => filters.length > 0)
-        .reduce(
-          (result, [key, filters]) => result.filter((race) => filters.includes(race[key])),
-          races
-        )
+          .filter(([key, filters]) => filters.length > 0)
+          .reduce(
+            (result, [key, filters]) => result.filter((race) => filters.includes(race[key])),
+            races
+          )
       : [];
     //过滤后整理成 dataNum:[raceId]
     let tmpFilterRace = {};
